@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: brownbagnx
+labels:
+  app: brownbagnx
+spec:
+  replicas: 2
+strategy:
+  type: Recreate
+template:
+  metadata:
+    labels:
+      app: brownbagnx
+      tier: brownbagnx
+  spec:
+    containers:
+    - name: brownbagnx
+      image: mateuszbrycki/brownbagnx:latest
+      imagePullPolicy: Always
+      ports:
+      - containerPort: 8080
+        name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: brownbagnx-service
+labels:
+  app: brownbagnx
+spec:
+ports:
+  - port: 80
+    targetPort: 8080
+selector:
+  app: brownbagnx
+  tier: brownbagnx
+type: LoadBalancer
