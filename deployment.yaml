@@ -2,11 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: brownbagnx
-  labels:
-    app: brownbagnx
 spec:
   selector:
-    app: brownbagnx
+    matchLabels:
+      app: brownbagnx
   replicas: 2
   template:
     metadata:
