@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: brownbagnx-deployment
+  name: brownbagnx-backend-deployment
 spec:
   selector:
     matchLabels:
-      app: brownbagnx
+      app: brownbagnx-backend
   replicas: 2
   template:
     metadata:
       labels:
         app: brownbagnx
-        tier: brownbagnx
+        tier: brownbagnx-backend
     spec:
       containers:
       - name: brownbagnx
@@ -20,19 +20,3 @@ spec:
         ports:
         - containerPort: 8080
           name: http
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: brownbagnx-service
-  labels:
-    app: brownbagnx
-spec:
-  ports:
-    - port: 80
-      targetPort: 8080
-  selector:
-    app: brownbagnx
-    tier: brownbagnx
-  type: LoadBalancer
