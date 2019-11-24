@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: brownbagnx
-labels:
-  app: brownbagnx
+  name: brownbagnx
+  labels:
+    app: brownbagnx
 spec:
   replicas: 2
 strategy:
@@ -26,9 +26,9 @@ template:
 apiVersion: v1
 kind: Service
 metadata:
-name: brownbagnx-service
-labels:
-  app: brownbagnx
+  name: brownbagnx-service
+  labels:
+    app: brownbagnx
 spec:
 ports:
   - port: 80
